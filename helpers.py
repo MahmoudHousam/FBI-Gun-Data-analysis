@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
+import plotly.graph_objects as go
 
 
 def explore_nans(df, title):
@@ -18,13 +18,28 @@ def explore_nans(df, title):
     df_null = df.isnull().sum()
     df_not_null = df.notnull().sum()
     labels = df.columns.tolist()
-    null_values = df.isnull().sum().values.tolist()
-    not_null_values = df.notnull().sum().values.tolist()
-    fig, ax = plt.subplots(figsize=(15, 5))
-    ax.barh(labels, null_values, label="Null")
-    ax.barh(labels, not_null_values, label="Not Null", color="green")
-    plt.xlabel(title, fontsize=20)
-    ax.legend()
-    plt.xticks(rotation=90)
-    plt.tight_layout()
-    return plt.show()
+    null_values = df_null.values.tolist()
+    not_null_values = df_not_null.values.tolist()
+    data = [
+        go.Bar(
+            name="Null",
+            x=null_values,
+            y=labels,
+            orientation="h",
+            marker=dict(
+                color="rgb(0,0,128)",
+            ),
+        ),
+        go.Bar(
+            name="Not Null",
+            x=not_null_values,
+            y=labels,
+            orientation="h",
+            marker=dict(
+                color="rgb(0,128,0)",
+            ),
+        ),
+    ]
+    layout = go.Layout(title=title, barmode="stack", width=1200, height=500)
+    fig = go.Figure(data, layout)
+    return fig.show()
