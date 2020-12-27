@@ -14016,7 +14016,7 @@ dtype: object</pre>
       <th>top</th>
       <td>Illinois</td>
       <td>Chicago</td>
-      <td>2339 Stricklands Crossroads Road</td>
+      <td>4100 block of Buena Vista Road</td>
     </tr>
     <tr>
       <th>freq</th>
@@ -14219,7 +14219,7 @@ dtype: object</pre>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># useing the `cov` numpy function to help determining whether the two variables are correlated or not</span>
-<span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">permit</span><span class="p">[</span><span class="s1">&#39;permit&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">permit</span><span class="p">[</span><span class="s1">&#39;totals&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Covariance: (Positive Correlation)</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">permit</span><span class="p">[</span><span class="s1">&#39;permit&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">permit</span><span class="p">[</span><span class="s1">&#39;totals&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())))</span>
 </pre></div>
 
     </div>
@@ -14232,16 +14232,15 @@ dtype: object</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[23]:</div>
+    <div class="prompt"></div>
 
 
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>array([[9.58150825e+12, 1.94753258e+13],
-       [1.94753258e+13, 4.22186690e+13]])</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Covariance: 
+[[9.58150825e+12 1.94753258e+13]
+ [1.94753258e+13 4.22186690e+13]]
+</pre>
 </div>
-
 </div>
 
 </div>
@@ -14257,7 +14256,7 @@ dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">permit</span> <span class="o">=</span> <span class="n">df_gun_v1</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)[</span><span class="s1">&#39;permit&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -14326,7 +14325,7 @@ dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Filtering the data</span>
@@ -14348,7 +14347,7 @@ dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Merging both dataframe</span>
@@ -14362,7 +14361,7 @@ dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Some columns will be deleted due to no use in my case study</span>
@@ -14377,13 +14376,13 @@ dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Ansering the question: Is there a relation between no. of killed vs no. of permissions?</span>
 <span class="n">killed_permit</span> <span class="o">=</span> <span class="n">merged_dfs</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;state&#39;</span><span class="p">,</span><span class="s1">&#39;year_shooting&#39;</span><span class="p">])[</span><span class="s1">&#39;killed&#39;</span><span class="p">,</span> <span class="s1">&#39;permit&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 <span class="n">injured_permit</span> <span class="o">=</span> <span class="n">merged_dfs</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;state&#39;</span><span class="p">,</span><span class="s1">&#39;year_shooting&#39;</span><span class="p">])[</span><span class="s1">&#39;injured&#39;</span><span class="p">,</span> <span class="s1">&#39;permit&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">make_subplots</span><span class="p">(</span><span class="n">rows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">make_subplots</span><span class="p">(</span><span class="n">rows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">subplot_titles</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;No. of killed people&#39;</span><span class="p">,</span> <span class="s1">&#39;No. of Injured people&#39;</span><span class="p">],</span> <span class="n">shared_xaxes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">shared_yaxes</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span>
     <span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
         <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Killed&#39;</span><span class="p">,</span>
@@ -14394,7 +14393,7 @@ dtype: object</pre>
 <span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span>
     <span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span> <span class="s1">&#39;injured&#39;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span> <span class="s1">&#39;Injured&#39;</span><span class="p">,</span>
         <span class="n">x</span><span class="o">=</span><span class="n">injured_permit</span><span class="p">[</span><span class="s1">&#39;injured&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
         <span class="n">y</span><span class="o">=</span><span class="n">injured_permit</span><span class="p">[</span><span class="s1">&#39;permit&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
         <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;markers&#39;</span>
@@ -14402,8 +14401,7 @@ dtype: object</pre>
 <span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
     <span class="n">title</span><span class="o">=</span><span class="s1">&#39;People Killed vs number of permissions across states&#39;</span><span class="p">,</span>
-    <span class="n">xaxis</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;showgrid&#39;</span><span class="p">:</span><span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;No. of killed people&#39;</span><span class="p">},</span>
-    <span class="n">yaxis</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;showgrid&#39;</span><span class="p">:</span><span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;No. of permissions&#39;</span><span class="p">}</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">1200</span>
 <span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -14430,12 +14428,20 @@ dtype: object</pre>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Beside vizualizing this relationship, I'm using the <code>np.covariance()</code> numpy function to determine the relationship numerically.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">killed_permit</span><span class="p">[</span><span class="s1">&#39;killed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">killed_permit</span><span class="p">[</span><span class="s1">&#39;permit&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Covariance: (Positive Correlation)</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">killed_permit</span><span class="p">[</span><span class="s1">&#39;killed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">killed_permit</span><span class="p">[</span><span class="s1">&#39;permit&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())))</span>
 </pre></div>
 
     </div>
@@ -14448,16 +14454,15 @@ dtype: object</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[42]:</div>
+    <div class="prompt"></div>
 
 
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>array([[7.65966423e+04, 1.80694867e+09],
-       [1.80694867e+09, 1.64786864e+14]])</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Covariance: 
+[[7.65966423e+04 1.80694867e+09]
+ [1.80694867e+09 1.64786864e+14]]
+</pre>
 </div>
-
 </div>
 
 </div>
@@ -14466,10 +14471,10 @@ dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">injured_permit</span><span class="p">[</span><span class="s1">&#39;injured&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">injured_permit</span><span class="p">[</span><span class="s1">&#39;permit&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Covariance: (Positive Correlation)</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">injured_permit</span><span class="p">[</span><span class="s1">&#39;injured&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">injured_permit</span><span class="p">[</span><span class="s1">&#39;permit&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())))</span>
 </pre></div>
 
     </div>
@@ -14482,16 +14487,15 @@ dtype: object</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[43]:</div>
+    <div class="prompt"></div>
 
 
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>array([[7.11683580e+05, 8.36660828e+09],
-       [8.36660828e+09, 1.64786864e+14]])</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Covariance: 
+[[7.11683580e+05 8.36660828e+09]
+ [8.36660828e+09 1.64786864e+14]]
+</pre>
 </div>
-
 </div>
 
 </div>
@@ -14524,7 +14528,7 @@ dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">call</span>
@@ -14541,7 +14545,7 @@ dtype: object</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[46]:</div>
+    <div class="prompt output_prompt">Out[31]:</div>
 
 
 
