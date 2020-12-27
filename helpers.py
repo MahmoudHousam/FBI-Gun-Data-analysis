@@ -60,3 +60,36 @@ def drop_60_missings(df):
         if df[col].isnull().sum() / len(df) * 100 >= 60:
             df.drop(columns=[col], inplace=True)
     return df
+
+
+def to_period(
+    df, col, new_col_name, period={"d", "m", "y"}, new_col_state=False, strtype=False
+):
+    """a function that takes a number of parameters
+    and return a new dataframe with new columns converted
+    to periods of time; day, month, year or convert the columns
+    itself to periods.
+
+    Args:
+        df (pd.DataFrame): dataframe
+        col (DataFrame.Series): column in dataframe
+        new_col_name ([string]): string object in case a new column created
+        period (dict, optional): [periods of time to convert to].
+        Defaults to {'d', 'm', 'y'}.
+        new_col_state (bool, optional): [in case of a new column, it should
+        be True and new_col_name is required]. Defaults to False.
+        strtype (bool, optional): [in case of converting the time period
+        to string, it should be True]. Defaults to False.
+
+    Returns:
+        [pd.DataFrame]: [pd.DataFrame]
+    """
+    if new_col_state is False & strtype is False:
+        df[col] = df[col].dt.to_period(period)
+    elif new_col_state is False & strtype is True:
+        df[col] = df[col].dt.to_period(period).astype(str)
+    elif new_col_state is True & strtype is False:
+        df[new_col_name] = df[col].dt.to_period(period)
+    elif new_col_state is True & strtype is True:
+        df[new_col_name] = df[col].dt.to_period(period).astype(str)
+    return df
