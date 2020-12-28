@@ -40,7 +40,7 @@ def explore_nans(df, title):
             ),
         ),
     ]
-    layout = go.Layout(title=title, barmode="stack")
+    layout = go.Layout(title=title, barmode="stack", yaxis={"dtick": 1})
     fig = go.Figure(data, layout)
     return fig.show(renderer="svg", width=1200, height=500)
 
