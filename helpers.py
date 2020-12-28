@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
+import plotly.io as pio
 
 
 def explore_nans(df, title):
@@ -40,9 +41,9 @@ def explore_nans(df, title):
             ),
         ),
     ]
-    layout = go.Layout(title=title, barmode="stack", width=1200, height=500)
+    layout = go.Layout(title=title, barmode="stack")
     fig = go.Figure(data, layout)
-    return fig.show()
+    return fig.show(renderer="svg", width=1200, height=500)
 
 
 def drop_60_missings(df):
